@@ -165,11 +165,16 @@ function on_click() {
   }
 }
 
+function on_context_menu(e) {
+  return e.preventDefault();
+}
+
 is_fullscreen = false;
 ctx.imageSmoothingEnabled = false;
 window.addEventListener('resize', on_resize);
 window.addEventListener('keydown', on_keydown);
 window.addEventListener('click', on_click);
+window.addEventListener('contextmenu', on_context_menu);
 on_resize();
 
 speed = random_speed();
