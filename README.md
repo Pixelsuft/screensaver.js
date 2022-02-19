@@ -1,2 +1,2 @@
 # screensaver.js
-HTML & JS Port Of screensaver.py
+HTML & JS Port of screensaver.py
