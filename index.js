@@ -73,11 +73,10 @@ function random_speed() {
   return random_float(min_speed, max_speed);
 }
 
-function get_delta() {
-  const now = Date.now();
-  const _delta = (now - last_tick) / 1000;
-  last_tick = now;
-  return _delta;
+function get_delta(time) {
+  const delta = (time - last_tick) / 1000;
+  last_tick = time;
+  return delta;
 }
 
 function calc_speed() {
@@ -103,8 +102,10 @@ function on_resize() {
   canvas.style.height = height + 'px';
 }
 
-function on_update() {
-  const delta = get_delta();
+function on_update(now) {
+  if (!last_tick)
+    last_tick = now;
+  const delta = get_delta(now);
   current_timer += delta;
   current_color[0] += delta * color_speed[0];
   current_color[1] += delta * color_speed[1];
@@ -186,5 +187,4 @@ calc_speed();
 
 canvas.style.display = 'block';
 current_timer = 0.0;
-last_tick = Date.now();
 requestAnimationFrame(on_update);
